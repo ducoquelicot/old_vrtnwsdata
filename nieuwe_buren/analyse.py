@@ -49,3 +49,24 @@ mode_values.head(20)
 mode_values.to_csv('nieuwe_buren/mode_gemeentes.csv', index=False)
 
 #%%
+gem_2009 = gemeentes[gemeentes.jaar == 2009]
+
+#%%
+gem_2009 = gem_2009[gem_2009.leeftijdsklasse.notna()]
+gem_2009 = gem_2009[gem_2009.geslacht.notna()]
+gem_2009 = gem_2009[gem_2009.nationaliteit.notna()]
+gem_2009 = gem_2009[gem_2009.burgerlijke_staat.notna()]
+
+#%%
+gem_2009.head()
+
+#%%
+mode_values09 = gem_2009.loc[gem_2009.groupby('gemeente').aantal.idxmax()].reset_index()
+
+#%%
+mode_values09.head()
+
+#%%
+mode_values09.to_csv('nieuwe_buren/mode_gemeentes09.csv')
+
+#%%
