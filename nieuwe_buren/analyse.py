@@ -1,50 +1,51 @@
 #%%
-import pandas as pd 
+import pandas as pd
 %matplotlib inline
-bevolking = pd.read_csv('nieuwe_buren/bevolking_leeft_gesl_nat_burgst20002019.csv', sep=';')
+bevolking = pd.read_csv('nieuwe_buren/melted.csv')
 
 #%%
-bevolking.info(verbose=True)
+bevolking.head()
 
 #%%
-melted = bevolking.melt(id_vars=['land', 'gewest', 'provincie', 'arrondissement', 'gemeente', 'alle_leeftijden', 'leeftijdsklasse', 'mannen_en_vrouwen', 'geslacht', 'belgen_en_nietbelgen', 'nationaliteit', 'alle_burgerlijkestaten', 'burgerlijke_staat'],
-value_vars=['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
-var_name='jaar', value_name='aantal')
+gemeentes = bevolking[bevolking.gemeente.notna()]
 
 #%%
-melted.aantal = melted.aantal.fillna(0.0)
+gemeentes.info(verbose=True, null_counts=True)
 
 #%%
-melted.aantal = melted.aantal.astype(int)
+gemeentes.info()
 
 #%%
-melted.head()
-
-#%%
-melted.jaar = melted.jaar.astype(int)
-
-#%%
-gemeentes = melted[melted.gemeente.notna()]
-
-#%%
-gemeentes.head()
+gemeentes.groupby(['gemeente', 'leeftijdsklasse', 'geslacht', 'nationaliteit', 'burgerlijke_staat', 'jaar']).aantal.max()
 
 #%%
 gem_2019 = gemeentes[gemeentes.jaar == 2019]
 
 #%%
-gem_2019[gem_2019.leeftijdsklasse == '100 jaar en meer'].sort_values('aantal', ascending=False).head(10)
+gem_2019.head()
 
 #%%
-melted.to_csv('nieuwe_buren/melted.csv', index=False, chunksize=10000, encoding='utf-8')
+gem_2019.groupby('gemeente').aantal.max().reset_index()
 
 #%%
-melted.info(verbose=True, null_counts=)
+gem_2019 = gem_2019[gem_2019.leeftijdsklasse.notna()]
 
 #%%
-melted.gemeente.unique()
+gem_2019 = gem_2019[gem_2019.geslacht.notna()]
 
 #%%
-melted.groupby(['gemeente', 'jaar'])['geslacht', 'nationaliteit', 'burgerlijke_staat'].apply(list)
+gem_2019 = gem_2019[gem_2019.nationaliteit.notna()]
+
+#%%
+gem_2019 = gem_2019[gem_2019.burgerlijke_staat.notna()]
+
+#%%
+mode_values = gem_2019.loc[gem_2019.groupby('gemeente').aantal.idxmax()].reset_index()
+
+#%%
+mode_values.head(20)
+
+#%%
+mode_values.to_csv('nieuwe_buren/mode_gemeentes.csv', index=False)
 
 #%%
