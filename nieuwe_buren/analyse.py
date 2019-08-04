@@ -67,6 +67,4 @@ mode_values09 = gem_2009.loc[gem_2009.groupby('gemeente').aantal.idxmax()].reset
 mode_values09.head()
 
 #%%
-mode_values09.to_csv('nieuwe_buren/mode_gemeentes09.csv')
-
-#%%
+mode_values09.to_csv('nieuwe_buren/mode_gemeentes09.csv', index=False)
