@@ -11,6 +11,7 @@ requests = "*"
 pylint = "*"
 sqlalchemy = "*"
 alembic = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"
