@@ -13,6 +13,7 @@ sqlalchemy = "*"
 alembic = "*"
 pandas = "*"
 bs4 = "*"
+twint = {editable = true,git = "https://github.com/twintproject/twint.git"}
 
 [requires]
 python_version = "3.7"
