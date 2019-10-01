@@ -32,8 +32,8 @@ for pdf in texts:
         uniek = list(set(contents))
         teller = collections.Counter(contents)
         # print(teller.most_common(100))
-        df = pd.DataFrame(data=teller.most_common(100), columns=['words', 'count'])
-        df.to_csv('regeerakkoorden/woorden_{}.csv'.format(filename))
+        df = pd.DataFrame(data=teller.most_common(), columns=['words', 'count'])
+        df.to_csv('regeerakkoorden/allewoorden_{}.csv'.format(filename))
     
 # with open(os.path.expanduser('~/Desktop/vrtnws/regeerakkoorden/uniek.csv'), 'w') as unique:
 #     writer = csv.writer(unique)
