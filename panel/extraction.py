@@ -16,8 +16,5 @@ def convert_xls(xls):
     else:
         pass
 
-
-
-
 if __name__ == '__main__':
     main()
