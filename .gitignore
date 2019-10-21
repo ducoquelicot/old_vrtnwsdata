@@ -1,3 +1,5 @@
 datasets.db
 *.csv
 *.xlsx
+*.docx
+tempCodeRunnerFile.py
