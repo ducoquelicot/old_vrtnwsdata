@@ -27,19 +27,10 @@ def main():
             relevant = questions[questions.datum == filename].code.tolist()
             relevant.extend(['Geslacht', 'Leeftijd3N', 'Diploma3', 'datum'])
 
-            # Niet elke dag heeft hetzelfde aantal onderwerpen, dus we voegen aan de lijst ook nog het aantal codes toe precies hoeveel onderwerpen er zijn
-            # for i in range(len(questions.onderwerp.unique())):
-            #     relevant.append('onderwerp_{}'.format(i))
-
             # Openen het bestand van die dag, voegen een column toe met de datum
             answers = pd.read_csv(file)
             answers.insert(0, 'datum', pd.to_datetime(filename, format = '%d%m%Y').strftime('%d-%m-%Y'))
             
-            # Voegen evenveel columns als onderwerpen toe, inclusief de onderwerpen zelf
-            # onderwerpen = questions.onderwerp.unique().tolist()
-            # for subject in onderwerpen:
-            #     answers['onderwerp_{}'.format(onderwerpen.index(subject))] = subject
-
             # We halen met behulp van de relevant-lijst alle interessante columns eruit, inclusief de datum-column, om zo alleen een csv over te houden met de
             # onderwerpen die we willen analyseren. 
             output = answers.loc[:, answers.columns.isin(relevant)]
