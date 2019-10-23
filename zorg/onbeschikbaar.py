@@ -2,7 +2,6 @@
 import pandas as pd
 from datetime import datetime as dt
 import os
-%matplotlib inline
 
 #%%
 data = pd.read_csv(os.path.expanduser('~/Desktop/vrtnws_data/zorg/supplyproblems.csv'), parse_dates=['Supply Problem Start Date', 'Supply Problem End Date'])
