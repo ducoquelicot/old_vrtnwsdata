@@ -1,4 +1,5 @@
 #%%
+
 import pandas as pd
 from datetime import datetime as dt
 import os
@@ -45,10 +46,13 @@ current.columns = current.columns.str.strip().str.lower().str.replace(' ', '_').
 current.info()
 
 #%%
+current.cti_extended.nunique()
+
+#%%
 no_end.info()
 
 #%%
-no_end.cti_extended.value_counts()
+no_end.cti_extended.value_counts().sort_values(ascending=False).head(10)
 
 #%%
 changes = pd.read_csv('~/Desktop/vrtnws_data/zorg/changes.csv', parse_dates=['BEGINDATUM ONBESCHIKBAARHEID'])
@@ -58,7 +62,7 @@ changes.columns = changes.columns.str.strip().str.lower().str.replace(' ', '_').
 changes.info()
 
 #%%
-changes.cti_extended.value_counts()
+changes.cti_extended.value_counts().sort_values(ascending=False).head(10)
 
 #%%
 import numpy as np
@@ -295,5 +299,20 @@ changes_clean = changes.drop_duplicates(['cti_extended', 'begindatum_onbeschikba
 
 #%%
 changes_clean[changes_clean.duplicated(['cti_extended', 'begindatum_onbeschikbaarheid'])]
+
+#%%
+checking = pd.merge(leftovers, changes_clean, how='outer', left_on=['cti_extended', 'supply_problem_start_date'], right_on=['cti_extended', 'begindatum_onbeschikbaarheid'], indicator='voorkomen')
+
+#%%
+checking.voorkomen.value_counts()
+
+#%%
+changes['duplicates'] = changes.duplicated(['cti_extended', 'begindatum_onbeschikbaarheid'])
+
+#%%
+changes[changes.duplicates == True].sort_values(by=['benaming', 'begindatum_onbeschikbaarheid'])
+
+#%%
+changes.groupby(['cti_extended', 'begindatum_onbeschikbaarheid']).reden_delta.nunique().sort_values(ascending=False)
 
 #%%
