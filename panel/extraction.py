@@ -25,7 +25,7 @@ def main():
 
             # Haal alle codes van die dag uit het bestand en zet die in een lijst. Voeg daaraan toe de codes van de overige elementen die we inspecteren
             relevant = questions[questions.datum == filename].code.tolist()
-            relevant.extend(['Geslacht', 'Leeftijd3N', 'Diploma3', 'datum'])
+            relevant.extend(['Geslacht', 'Leeftijd7', 'Diploma3', 'VRT_NWS', 'datum'])
 
             # Openen het bestand van die dag, voegen een column toe met de datum
             answers = pd.read_csv(file)

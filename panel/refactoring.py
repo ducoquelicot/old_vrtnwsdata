@@ -10,6 +10,7 @@ import glob, os, pdb, time
 
 def main():
     files = glob.glob(os.path.expanduser('~/Desktop/vrtnws_data/panel/*_ex.csv'))
+    files.sort()
 
     for file in files:
         filename = os.path.basename(file)[:-7]
@@ -41,16 +42,16 @@ def get_interesting(file):
 
         subset = codes[codes.onderwerp == subject]
         vragen = subset.code.unique().tolist()
-        vragen.extend(['Geslacht', 'Leeftijd3N', 'Diploma3', 'datum'])
+        vragen.extend(['Geslacht', 'Leeftijd7', 'Diploma3', 'datum', 'VRT_NWS'])
 
         output = today.loc[:, today.columns.isin(vragen)].copy()
         output.insert(1, 'onderwerp', subject)
         output.rename(columns = {i: "antwoord" for i in output.columns if i.startswith("V0")}, inplace=True)
-        output.rename(columns = {"Geslacht":"geslacht", "Leeftijd3N":"leeftijd", "Diploma3":"opleiding"}, inplace=True)
+        output.rename(columns = {"Geslacht":"geslacht", "Leeftijd7":"leeftijd", "Diploma3":"opleiding", "VRT_NWS":"vrt_nws"}, inplace=True)
         output['datum'] = pd.to_datetime(output['datum'], format = '%d-%m-%Y').dt.strftime('%d/%m/%Y')
 
         result = interessant.append(output, sort=True)
-        result = result[['datum', 'onderwerp', 'antwoord', 'geslacht', 'leeftijd', 'opleiding']]
+        result = result[['datum', 'onderwerp', 'antwoord', 'geslacht', 'leeftijd', 'opleiding', 'vrt_nws']]
         result.to_csv('panel/interessant.csv', index=False, sep=';')
         print('Refactored {}'.format(filename))
         time.sleep(2)
