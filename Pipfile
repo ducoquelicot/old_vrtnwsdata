@@ -16,6 +16,7 @@ bs4 = "*"
 twint = {editable = true,git = "https://github.com/twintproject/twint.git"}
 pdftotext = "*"
 xlrd = "*"
+pyreadstat = "*"
 
 [requires]
 python_version = "3.7"
