@@ -15,7 +15,7 @@ sporza = []
 
 
 def main():
-    followers = glob.glob(os.path.expanduser('~/Desktop/vrtnws/instagram/*.json'))
+    followers = glob.glob(os.path.expanduser('~/Desktop/vrtnws_data/instagram/*.json'))
 
     add_followers(followers)
     compare_mn()
@@ -27,13 +27,13 @@ def add_followers(followers):
     for file in followers:
         with open(file) as json_data:
             output = json.load(json_data)
-            if 'close_friends' in output:
+            if os.path.basename(file) == 'nws.json':
                 for row in output['followers']:
                     nws.append(row)
-            elif 'appartementenkeerbergen' not in output['blocked_users']:
+            elif os.path.basename(file) == 'sporza.json':
                 for row in output['followers']:
                     sporza.append(row)
-            elif 'luca_castelli' in output['blocked_users']:
+            elif os.path.basename(file) == 'vrtnws.json':
                 for row in output['followers']:
                     vrt.append(row)
             else:
