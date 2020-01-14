@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+ipykernel = "*"
 
 [packages]
 requests = "*"
@@ -16,6 +17,7 @@ bs4 = "*"
 xlrd = "*"
 pyreadstat = "*"
 twint = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.7"
