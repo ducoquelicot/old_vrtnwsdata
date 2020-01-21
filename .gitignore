@@ -6,3 +6,9 @@ tempCodeRunnerFile.py
 .env
 interessant.csv
 *.html
+.vscode
+Pipfile
+Pipfile.lock
+credentials.json
+token.pickle
+.DS_Store
