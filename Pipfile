@@ -18,6 +18,7 @@ xlrd = "*"
 pyreadstat = "*"
 twint = "*"
 scikit-learn = "*"
+seaborn = "*"
 
 [requires]
 python_version = "3.7"
