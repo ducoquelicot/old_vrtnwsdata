@@ -14,10 +14,6 @@ function responsivefy(svg) {
         var targetWidth = parseInt(container.style("width"));
         svg.attr("width", targetWidth);
         svg.attr("height", Math.round(targetWidth / aspect));
-
-        if (targetWidth < 1000) {
-            svg.attr("transform", "translate(0, 350) rotate(90)")
-        }
     }
 }
 
@@ -31,7 +27,6 @@ var svg = d3.select('#heatmap')
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .call(responsivefy)
-        // .attr("transform", "rotate(90)")
     .append("g")
         .attr("transform", "translate(" + margin.left + ',' + margin.top + ")");
 
@@ -56,7 +51,9 @@ var scaleY = makeScale([height, 0]);
 
 var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
+    .attr("class", "axis")
 var yAxis = svg.append("g")
+    .attr("class", "y-axis")
 
 // create tooltip
 var tooltip = d3.select("#heatmap")
@@ -133,7 +130,7 @@ var tooltip = d3.select("#heatmap")
 
                 // update elements with new data
                 u.transition()
-                .duration(500)
+                .duration(800)
                 .style("fill", d => scaleColor(d[variabele]))
         });
     }
