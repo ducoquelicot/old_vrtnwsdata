@@ -22,7 +22,6 @@ var svg = d3.select('#simulation')
         .attr('id', 'content')
         .attr("transform", "translate(" + margin.left + ',' + margin.top + ")");
 
-
 var data = []
 for (var i=0; i<10; i++) {
     person = choose(persons);
@@ -33,10 +32,10 @@ for (var i=0; i<10; i++) {
     .join(
         enter => enter.append('circle')
                 .attr('r', 5)
-            .call(enter => enter.transition().duration(1000).attr('cx', (d, i) => i * 12)),
-        update => update
-            .attr('r', 5)
-            .attr('cx', (d, i) => i * 12)
+            .call(enter => enter.transition().duration(500).delay( (d,i) => 500*i).attr('cx', (d, i) => i * 12)),
+        // update => update
+        //     .attr('r', 5)
+        //     .attr('cx', (d, i) => i * 12)
     );
 
     // var u = svg
