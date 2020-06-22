@@ -1,32 +1,13 @@
-function responsivefy(svg) {
-    var container = d3.select(svg.node().parentNode),
-    width = parseInt(svg.style('width')),
-    height = parseInt(svg.style('height')),
-    aspect = width / height;
-
-    svg.attr("viewBox", "0 0 " + width + " " + height)
-    .attr("preserveAspectRatio", "xMinYMid")
-    .call(resize);
-
-    d3.select(window).on("resize." + container.attr("id"), resize);
-
-    function resize() {
-        var targetWidth = parseInt(container.style("width"));
-        svg.attr("width", targetWidth);
-        svg.attr("height", Math.round(targetWidth / aspect));
-    }
-}
-
-var margin = {top: 30, right: 30, bottom: 30, left: 100},
+var margin = {top: 30, right: 30, bottom: 30, left: 120},
 width = 1500 - margin.left - margin.right,
 height = 350 - margin.top - margin.bottom;
 
 // bind svg to div and create group element for the content
 var svg = d3.select('#heatmap')
     .append('svg')
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .call(responsivefy)
+        .attr('viewBox', '0 0 1500 350')
+        .attr('preverseAspectRatio', 'xMidYMid')
+        // .attr('height', '350px')
     .append("g")
         .attr("transform", "translate(" + margin.left + ',' + margin.top + ")");
 

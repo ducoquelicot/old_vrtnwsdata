@@ -11,6 +11,10 @@ div.tooltip {
     pointer-events: none;			
 }
 
+/* svg {
+    height: 350px;
+} */
+
 button {
     font-size: 1vw;
     margin-bottom: 5px;
@@ -24,13 +28,3 @@ button {
     font-size: 15px;
 }
 
-svg {
-    transform: rotate(90deg) translate(400px, 0);
-}
-
-@media only screen and (min-width: 1000px) {
-    svg {
-        transform: rotate(0);
-
-    }
-}

@@ -1,0 +1,14 @@
+
+/* @media only screen and (min-width: 1025px) {
+
+} */
+
+body {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+#map path {
+    fill: #ddd;
+    stroke: #aaa;
+}
