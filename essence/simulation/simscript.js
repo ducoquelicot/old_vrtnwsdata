@@ -32,24 +32,8 @@ for (var i=0; i<10; i++) {
     .join(
         enter => enter.append('circle')
                 .attr('r', 5)
-            .call(enter => enter.transition().duration(500).delay( (d,i) => 500*i).attr('cx', (d, i) => i * 12)),
-        // update => update
-        //     .attr('r', 5)
-        //     .attr('cx', (d, i) => i * 12)
+            .call(enter => enter.transition().duration(500).delay( (d,i) => 500*i).attr('cx', (d, i) => i * 12))
     );
-
-    // var u = svg
-    //     .selectAll("circle")
-    //     .data(data);
-
-    // u = u
-    //     .enter().append("circle")
-    //     .attr('r', 5)
-    //     .merge(u);
-
-    // u.transition()
-    //     .duration(1000)
-    //     .attr('cx', (d, i) => i * 12)
 }
 
 console.log(data);
