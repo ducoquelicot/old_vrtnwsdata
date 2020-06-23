@@ -1,37 +1,80 @@
 import React from 'react';
 import * as d3 from 'd3';
+import styles from "./style.js";
 
 export default class Titles extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.references = { citizen: React.createRef() };
+    this.references = { 
+      title1: React.createRef(),
+      title2: React.createRef()
+    };
   }
 
   componentDidMount() {
-    this.showCitizen();
+    this.animate();
   }
 
-  showCitizen() {
-    const { delay } = this.props;
+  componentDidUpdate() {
+    this.animate();
+  }
 
-    d3.select(this.references.citizen.current)
+  animate() {
+    switch (this.props.phase) {
+      case 1:
+        this.animatePhase1();
+        break;
+      case 2:
+        this.animatePhase2();
+        break;
+      default:
+        this.animatePhase1();
+    }
+  }
+
+  animatePhase1() {
+    d3.select(this.references.title1.current)
       .style('opacity', 0)
-      .transition()
-      .delay(delay)
-      .duration(1000)
-      .style('opacity', 1.0);
+
+    d3.select(this.references.title2.current)
+    .style('opacity', 0)
+  }
+
+  animatePhase2() {
+    d3.select(this.references.title1.current)
+    .transition()
+    .duration(1000)
+    .style('opacity', 1.0)
+
+    d3.select(this.references.title2.current)
+    .transition()
+    .duration(1000)
+    .style('opacity', 1.0)
   }
 
   render() {
-    const { skinTone, guilty } = this.props;
     return (
-      <circle ref={this.references.citizen}
-        cx={`${Math.round(Math.random() * 90) + 5}%`}
-        cy={`${Math.round(Math.random() * 90) + 5}%`}
-        r="0.75%"
-        stroke={guilty ? 'red' : 'black'}
-        fill={skinTone}
-      />
+      <g>
+      <text ref={this.references.title1}
+        x= "25%"
+        y= "10%"
+        width="50%"
+        height="10%"
+        style={styles.text}
+        >
+          Witte mensen
+        </text>
+
+      <text ref={this.references.title2}
+        x= "75%"
+        y= "10%"
+        width="50%"
+        height="10%"
+        style={styles.text}
+        >
+          Zwarte mensen
+        </text>
+      </g>
     );
   }
 }

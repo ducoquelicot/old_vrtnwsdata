@@ -5,12 +5,19 @@ import styles from './style';
 export default class Citizen extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.xCoord = `${Math.round(Math.random() * 90) + 5}%`;
-    this.yCoord = `${Math.round(Math.random() * 90) + 5}%`;
     this.references = { citizen: React.createRef() };
+
+    this.state = {
+      xCoord : `${Math.round(Math.random() * 90) + 5}%`,
+      yCoord : `${Math.round(Math.random() * 90) + 5}%`
+    }
   }
 
   componentDidMount() {
+    this.animate();
+  }
+
+  componentDidUpdate() {
     this.animate();
   }
 
@@ -66,21 +73,45 @@ export default class Citizen extends React.PureComponent {
         .delay(delay)
         .duration(animationTime * 2)
         .style('stroke', 'red')
-        .attr('stroke-width', 5);
+        .attr('stroke-width', 3);
     }
+
+    d3.select(this.references.citizen.current)
+      .transition()
+      .delay(duration)
+      .duration(animationTime)
+      .style('opacity', 0)
   }
 
-  animatePhase2() {
 
+  animatePhase2() {
+      const { skinTone, count, control } = this.props;
+      const rest = count%5;
+      const xCoord = skinTone === 'white' ? `${21 + rest * 2}%` : `${71 + rest * 2}%`;
+      const yCoord = `${Math.ceil(count/5) * 5 + 15}%`;
+
+      d3.select(this.references.citizen.current)
+      .style('opacity', 0)
+      
+      if (control) {
+        d3.select(this.references.citizen.current)
+        .transition()
+        .delay(700 * count)
+        .duration(1000)
+        .style('opacity', 1)
+        .attr('cx', xCoord)
+        .attr('cy', yCoord)
+      }
   }
 
   render() {
     const { skinTone } = this.props;
+    const { xCoord, yCoord } = this.state;
     return (
       <circle ref={this.references.citizen} style={styles.circle}
-        cx={this.xCoord}
-        cy={this.yCoord}
-        r="0.75%"
+        cx={xCoord}
+        cy={yCoord}
+        r="10"
         stroke="black"
         fill={skinTone}
         strokeWidth="1"
