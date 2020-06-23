@@ -38,7 +38,7 @@ export default class Narrator extends React.PureComponent {
       .transition()
       .duration(animationTime)
       .style('opacity', 1)
-      .text('Hier zijn 100 mensen')
+      .text('100 mensen')
       .transition()
       .delay(delay)
       .duration(animationTime)

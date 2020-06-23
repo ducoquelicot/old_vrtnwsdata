@@ -9,7 +9,7 @@ export default class Simulation extends React.PureComponent {
   constructor(props) {
     super(props);
     this.citizenAmount = 100;
-    this.durationPhase1 = 25000; // ms
+    this.durationPhase1 = 10000; // ms
     this.durationPhase2 = 10000; // ms
     this.durationPhase3 = 10000; // ms
     this.delayBetweenPhases = 5000; //ms
