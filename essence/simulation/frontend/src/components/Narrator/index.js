@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
+import styles from './style';
 
 export default class Narrator extends React.PureComponent {
   constructor(props) {
@@ -77,7 +78,7 @@ export default class Narrator extends React.PureComponent {
 
   render() {
     return (
-      <text ref={this.references.text1}
+      <text ref={this.references.text1} style={styles.text}
         className='narrator'
         x='50%'
         y='50%'

@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
+import styles from './style';
 
 export default class Citizen extends React.PureComponent {
   constructor(props) {
@@ -76,7 +77,7 @@ export default class Citizen extends React.PureComponent {
   render() {
     const { skinTone } = this.props;
     return (
-      <circle ref={this.references.citizen}
+      <circle ref={this.references.citizen} style={styles.circle}
         cx={this.xCoord}
         cy={this.yCoord}
         r="0.75%"

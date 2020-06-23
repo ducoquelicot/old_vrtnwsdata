@@ -2,6 +2,7 @@ import React from 'react';
 import Human from '../../generators/Human';
 import Citizen from '../Citizen';
 import Narrator from '../Narrator';
+import styles from './style';
 
 export default class Simulation extends React.PureComponent {
 
@@ -70,7 +71,7 @@ export default class Simulation extends React.PureComponent {
 
     console.log(this.state);
     return (
-      <svg>
+      <svg style={styles.svg}>
         {citizens}
         <Narrator phase={this.phase} duration={duration} />
       </svg>
