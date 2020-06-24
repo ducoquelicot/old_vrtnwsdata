@@ -1,3 +1,7 @@
+import { rng }  from './numgen'
+import { rng2 }  from './numgen'
+import { rng3 } from './numgen'
+
 export default class Human {
   constructor(properties) {
     this.index = properties.index;
@@ -8,7 +12,20 @@ export default class Human {
   }
 
   generateName = () => 'Jon';
-  generateSkinTone = () => Math.random() >= 0.5 ? 'black' : 'white';
-  generateCrimes = () => Math.random() >= 0.5;
-  generateChance = () => Math.random() >= 0.5;
+  generateSkinTone = () => rng() >= 0.5 ? 'black' : 'white';
+  generateCrimes = () => rng() >= 0.5;
+
+  // scenario 1
+  // generateChance = () => Math.random() >= 0.5;
+
+  // scenario 2
+  generateChance = function() {
+    if (this.skinTone === 'black') {
+      return Math.random() >= 0.3;
+    }
+    else {
+      return Math.random() >= 0.7;
+    }
+  }
+
 }
