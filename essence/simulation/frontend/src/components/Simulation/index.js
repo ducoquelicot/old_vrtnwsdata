@@ -5,6 +5,7 @@ import Narrator from '../Narrator';
 import styles from './style';
 import Titles from '../Titles';
 import Bars from '../Bars';
+import { rng } from '../../generators/Human/numgen';
 
 export default class Simulation extends React.PureComponent {
 
@@ -35,8 +36,8 @@ export default class Simulation extends React.PureComponent {
     const delayPhase3 = this.durationPhase1 + this.durationPhase2 + (this.delayBetweenPhases * 2);
 
     setTimeout(() => {
-
-      const countWhite = this.state.citizens.filter(citizen => citizen.control && citizen.guilty && citizen.skinTone === 'white').length  
+      console.log(this.state.citizens)
+      const countWhite = this.state.citizens.filter(citizen => citizen.control && citizen.guilty && citizen.skinTone === 'white').length 
       const countBlack = this.state.citizens.filter(citizen => citizen.control && citizen.guilty && citizen.skinTone === 'black').length  
 
       const totalWhite = this.state.citizens.filter(citizen => citizen.control && citizen.skinTone === 'white').length
@@ -73,11 +74,28 @@ export default class Simulation extends React.PureComponent {
     let blackCount = 0
 
     return (
-      citizens.map(citizen => {
-        
+      citizens.map((citizen, i, arr) => {
+        // scenario 3
+        const previous = arr[i-1]
+
+        if (citizen.skinTone === 'white') {
+          controlChance = () => Math.random() >= 0.9;
+          citizen.control = controlChance();
+        }
+        else if (previous === undefined && citizen.skinTone === 'black') {
+          var controlChance = () => Math.random() >= 0.2;
+          citizen.control = controlChance();
+        }
+        else if (previous.skinTone === 'black' && citizen.skinTone === 'black') {
+          citizen.control = 0.1;
+        }
+        else if (previous.guilty === true && previous.skinTone === 'black' && citizen.skinTone === 'black') {
+          citizen.control = true;
+        }
+
         whiteCount = citizen.skinTone === 'white' && citizen.control ? whiteCount + 1 : whiteCount
         blackCount = citizen.skinTone === 'black' && citizen.control ? blackCount + 1 : blackCount
-
+        
         return <Citizen
           key={citizen.index}
           index={citizen.index}
