@@ -5,10 +5,14 @@ import styles from './style';
 export default class Narrator extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.references = { text1: React.createRef() };
+    this.references = { text1: React.createRef(), text2: React.createRef() };
   }
 
   componentDidMount() {
+    this.animate();
+  }
+
+  componentDidUpdate() {
     this.animate();
   }
 
@@ -26,7 +30,7 @@ export default class Narrator extends React.PureComponent {
   }
 
   animatePhase1() {
-    const { duration } = this.props;
+    const { duration} = this.props;
     const steps = 4;
     const timePerStep = duration / steps;
     const delay = timePerStep * 0.5;
@@ -47,7 +51,7 @@ export default class Narrator extends React.PureComponent {
       .transition()
       .duration(animationTime)
       .style('opacity', 1)
-      .text('Sommigen zijn blank')
+      .text('Sommigen zijn wit')
       .transition()
       .delay(delay)
       .duration(animationTime)
@@ -69,20 +73,97 @@ export default class Narrator extends React.PureComponent {
       .transition()
       .delay(delay)
       .duration(animationTime)
+      .style('opacity', 0)
+
+      // scenario 1
+      // .transition()
+      // .delay(delay)
+      // .duration(animationTime)
+      // .style('opacity', 1)
+      // .text('De politie controleert willekeurig mensen op straat.')
+      // .transition()
+      // .delay(delay)
+      // .duration(animationTime)
+      // .style('opacity', 0);
+
+      // scenario 2
+      // .transition()
+      // .delay(delay)
+      // .duration(animationTime)
+      // .style('opacity', 1)
+      // .text('De politie controleert vaker in "zwarte" buurten, waar meer criminaliteit is.')
+      // .transition()
+      // .delay(delay)
+      // .duration(animationTime)
+      // .style('opacity', 0);
+
+      // scenario 3
+      .transition()
+      .delay(delay)
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('De politie controleert vaker in "zwarte" buurten én heeft een bias tegen zwarte mensen.')
+      .transition()
+      .delay(delay)
+      .duration(animationTime)
       .style('opacity', 0);
+
   }
 
-  animatePhase2() {
 
+  animatePhase2() {
+    const { duration} = this.props;
+    const steps = 4;
+    const timePerStep = duration / steps;
+    const delay = timePerStep * 0.5;
+    const animationTime = timePerStep * 0.25;
+
+    d3.select(this.references.text2.current)
+      .style('opacity', 0)
+
+      .transition()
+      .delay(delay * 2)
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('Dit zijn de gecontroleerde mensen.')
+      .transition()
+      .delay(delay * 0.8)
+      .duration(animationTime)
+      .style('opacity', 0)
+
+      .transition()
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('De politie telt het aantal criminelen van elke huidskleur.')
+      .transition()
+      .delay(delay * 0.8)
+      .duration(animationTime)
+      .style('opacity', 0)
+
+      .transition()
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('Dit is de totale verdeling van criminelen per huidskleur:')
+      .transition()
+      .delay(delay * 0.8)
+      .duration(animationTime)
+      .style('opacity', 0)
   }
 
   render() {
     return (
-      <text ref={this.references.text1} style={styles.text}
-        className='narrator'
-        x='50%'
-        y='50%'
-      />
+      <g>
+        <text ref={this.references.text1} style={styles.text}
+          className='narrator'
+          x='50%'
+          y='50%'
+        />
+        <text ref={this.references.text2} style={styles.text2}
+          className='narrator'
+          x='50%'
+          y='50%'
+        />
+      </g>
     );
   }
 }

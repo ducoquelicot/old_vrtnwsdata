@@ -1,6 +1,4 @@
-import { rng }  from './numgen'
-import { rng2 }  from './numgen'
-import { rng3 } from './numgen'
+import rng from './numgen'
 
 export default class Human {
   constructor(properties) {
@@ -22,10 +20,10 @@ export default class Human {
   // scenario 2
   // generateChance = function() {
   //   if (this.skinTone === 'black') {
-  //     return rng() >= 0.3;
+  //     return Math.random() >= 0.3;
   //   }
   //   else {
-  //     return rng() >= 0.7;
+  //     return Math.random() >= 0.7;
   //   }
   // }
 

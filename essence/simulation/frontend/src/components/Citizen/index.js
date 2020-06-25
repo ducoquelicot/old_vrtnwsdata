@@ -44,13 +44,12 @@ export default class Citizen extends React.PureComponent {
     if (skinTone === 'white') {
       d3.select(this.references.citizen.current)
         .style('opacity', 0)
-
         .transition()
         .delay(timePerStep)
         .transition()
         .delay(delay)
         .duration(animationTime)
-        .style('opacity', 1.0);
+        .style('opacity', 0.5);
     }
 
     if (skinTone === 'black') {
@@ -62,7 +61,7 @@ export default class Citizen extends React.PureComponent {
         .transition()
         .delay(delay)
         .duration(animationTime)
-        .style('opacity', 1.0);
+        .style('opacity', 0.5);
     }
 
     if (guilty) {
@@ -73,7 +72,8 @@ export default class Citizen extends React.PureComponent {
         .delay(delay)
         .duration(animationTime * 2)
         .style('stroke', 'red')
-        .attr('stroke-width', 3);
+        .attr('stroke-width', 3)
+        .style('opacity', 0.5);
     }
 
     d3.select(this.references.citizen.current)

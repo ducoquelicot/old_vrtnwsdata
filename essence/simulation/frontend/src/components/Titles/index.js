@@ -41,14 +41,22 @@ export default class Titles extends React.PureComponent {
   }
 
   animatePhase2() {
+    const { duration} = this.props;
+    const steps = 4;
+    const timePerStep = duration / steps;
+    const delay = timePerStep * 0.5;
+    const animationTime = timePerStep * 0.25;
+
     d3.select(this.references.title1.current)
     .transition()
-    .duration(1000)
+    .delay(delay)
+    .duration(animationTime)
     .style('opacity', 1.0)
 
     d3.select(this.references.title2.current)
     .transition()
-    .duration(1000)
+    .delay(delay)
+    .duration(animationTime)
     .style('opacity', 1.0)
   }
 
