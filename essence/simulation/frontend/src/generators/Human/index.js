@@ -6,8 +6,8 @@ export default class Human {
     this.name = this.generateName();
     this.skinTone = this.generateSkinTone();
     this.guilty = this.generateCrimes();
-    // this.control = this.generateChance();
-    this.control = undefined
+    this.control = this.generateChance();
+    // this.control = undefined
   }
 
   generateName = () => 'Jon';
@@ -15,7 +15,7 @@ export default class Human {
   generateCrimes = () => rng() >= 0.5;
 
   // scenario 1
-  // generateChance = () => Math.random() >= 0.5;
+  generateChance = () => Math.random() >= 0.5;
 
   // scenario 2
   // generateChance = function() {
