@@ -87,7 +87,7 @@ export default class Citizen extends React.PureComponent {
   animatePhase2() {
       const { skinTone, count, control } = this.props;
       const rest = count%5;
-      const xCoord = skinTone === 'white' ? `${21 + rest * 2}%` : `${71 + rest * 2}%`;
+      const xCoord = skinTone === 'white' ? `${15 + rest * 5}%` : `${65 + rest * 5}%`;
       const yCoord = `${Math.ceil(count/5) * 5 + 15}%`;
 
       d3.select(this.references.citizen.current)

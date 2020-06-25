@@ -131,7 +131,7 @@ export default class Simulation extends React.PureComponent {
 
     console.log(this.state);
     return (
-      <svg style={styles.svg}>
+      <svg style={styles.svg} viewBox='0 0 800 500'>
         {citizens}
         <Narrator phase={phase} duration={duration} />
         <Titles phase={phase} duration={duration} />

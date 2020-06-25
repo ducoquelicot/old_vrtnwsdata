@@ -10,7 +10,7 @@ const styles = {
     },
     text : {
         fontFamily: 'Poppins',
-        fontSize: '1.5em',
+        fontSize: '1em',
         textAnchor: 'middle',
         fill: 'white',
         transform: 'translate(1%, 0)'
