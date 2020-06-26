@@ -15,16 +15,16 @@ export default class Human {
   generateCrimes = () => rng() >= 0.5;
 
   // scenario 1
-  generateChance = () => Math.random() >= 0.5;
+  // generateChance = () => Math.random() >= 0.5;
 
   // scenario 2
-  // generateChance = function() {
-  //   if (this.skinTone === 'black') {
-  //     return Math.random() >= 0.3;
-  //   }
-  //   else {
-  //     return Math.random() >= 0.7;
-  //   }
-  // }
+  generateChance = function() {
+    if (this.skinTone === 'black') {
+      return Math.random() >= 0.3;
+    }
+    else {
+      return Math.random() >= 0.7;
+    }
+  }
 
 }

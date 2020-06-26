@@ -1,5 +1,6 @@
 import React from 'react';
 import Simulation from '../Simulation'
+// import styles from './style';
 
 export default class App extends React.PureComponent {
     constructor(props) {
@@ -8,8 +9,22 @@ export default class App extends React.PureComponent {
         this.state = {
             startSim : false,
             key: Math.random(),
+            top: null,
         }
     }
+
+componentDidMount() {
+    this.setSize();
+}
+
+setSize = () => {
+    if (window.innerWidth < 1300) {
+        this.setState({top: '20%'})
+    }
+    else {
+        this.setState({top: '16%'})
+    }
+}
 
 
 startSimulation = () => {
@@ -22,13 +37,20 @@ refresh = () => {
 
 render() {
 
-    const { startSim, key } = this.state;
+    const { startSim, key, top } = this.state;
+    const styles = {
+        button : {
+            position: 'absolute',
+            left: '70%',
+            top: top,
+        }
+    }
 
     return(
         <div>
             {!startSim && <button onClick={() => this.startSimulation()}>Start</button>}
+            {startSim && <button className ="refresh" style={styles.button} onClick={() => this.refresh()}>Refresh</button>}
             {startSim && <Simulation key={key} />}
-            {startSim && <button onClick={() => this.refresh()}>Refresh</button>}
         </div>
     )
 }

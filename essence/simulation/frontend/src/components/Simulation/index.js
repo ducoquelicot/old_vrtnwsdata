@@ -2,7 +2,7 @@ import React from 'react';
 import Human from '../../generators/Human';
 import Citizen from '../Citizen';
 import Narrator from '../Narrator';
-import styles from './style';
+// import styles from './style';
 import Titles from '../Titles';
 import Bars from '../Bars';
 
@@ -22,13 +22,25 @@ export default class Simulation extends React.PureComponent {
       duration: this.durationPhase1,
       percentageWhite: 0,
       percentageBlack: 0,
+      maxHeight: null,
+      maxWidth: null,
     };
   }
 
   componentDidMount() {
+    this.setSize();
     this.generatePopulation();
     this.startPhaseCountdown();
-    // this.restartViz();
+  }
+
+  setSize() {
+    console.log(window.innerWidth)
+    if (window.innerWidth < 768) {
+      this.setState({ maxHeight: '250px', maxWidth: '400px'})
+    }
+    else {
+      this.setState({ maxHeight: '500px', maxWidth: '800px'})
+    }
   }
 
   startPhaseCountdown() {
@@ -53,23 +65,6 @@ export default class Simulation extends React.PureComponent {
 
     }, delayPhase2);
   }
-
-  // restartViz() {
-  //   const totalDuration = this.durationPhase1 + this.delayBetweenPhases + this.durationPhase2 + 1000;
-
-  //   setInterval(() => {
-  //     this.setState = ({
-  //       citizens: [],
-  //       phase: 1,
-  //       duration: this.durationPhase1,
-  //       percentageWhite: 0,
-  //       percentageBlack: 0,
-  //     });
-  //   }, totalDuration);
-
-  //   this.generatePopulation();
-  //   this.startPhaseCountdown();
-  // }
 
   generatePopulation() {
     const population = [];
@@ -126,8 +121,24 @@ export default class Simulation extends React.PureComponent {
   }
 
   render() {
-    const { duration, phase, percentageBlack, percentageWhite } = this.state;
+    const { duration, phase, percentageBlack, percentageWhite, maxHeight, maxWidth } = this.state;
     const citizens = this.renderCitizens();
+
+    const styles = {
+      svg: {
+        width: '100%',
+        height: '100%',
+        maxWidth: maxWidth,
+        maxHeight: maxHeight,
+        flex: 1,
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        alignItems: 'center',
+        margin: 0,
+        padding: '1rem',
+        boxSizing: 'border-box',
+      }
+    };
 
     console.log(this.state);
     return (

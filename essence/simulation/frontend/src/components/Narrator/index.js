@@ -76,26 +76,26 @@ export default class Narrator extends React.PureComponent {
       .style('opacity', 0)
 
       // scenario 1
-      .transition()
-      .delay(delay)
-      .duration(animationTime)
-      .style('opacity', 1)
-      .text('De politie controleert willekeurig.')
-      .transition()
-      .delay(delay)
-      .duration(animationTime)
-      .style('opacity', 0);
-
-      // scenario 2
       // .transition()
       // .delay(delay)
       // .duration(animationTime)
       // .style('opacity', 1)
-      // .text('De politie controleert vaker in "zwarte" buurten.')
+      // .text('De politie controleert willekeurig.')
       // .transition()
       // .delay(delay)
       // .duration(animationTime)
       // .style('opacity', 0);
+
+      // scenario 2
+      .transition()
+      .delay(delay)
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('De politie controleert vaker in "zwarte" buurten.')
+      .transition()
+      .delay(delay)
+      .duration(animationTime)
+      .style('opacity', 0);
 
       // scenario 3
       // .transition()
