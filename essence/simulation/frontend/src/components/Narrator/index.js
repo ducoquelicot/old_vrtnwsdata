@@ -5,7 +5,7 @@ import styles from './style';
 export default class Narrator extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.references = { text1: React.createRef(), text2: React.createRef() };
+    this.references = { text1: React.createRef(), text2: React.createRef(), text3: React.createRef(), text4: React.createRef() };
   }
 
   componentDidMount() {
@@ -87,35 +87,35 @@ export default class Narrator extends React.PureComponent {
       // .style('opacity', 0);
 
       // scenario 2
+      // .transition()
+      // .delay(delay)
+      // .duration(animationTime)
+      // .style('opacity', 1)
+      // .text('De politie controleert vaker in "zwarte" buurten.')
+      // .transition()
+      // .delay(delay)
+      // .duration(animationTime)
+      // .style('opacity', 0);
+
+      // scenario 3
       .transition()
       .delay(delay)
       .duration(animationTime)
       .style('opacity', 1)
-      .text('De politie controleert vaker in "zwarte" buurten.')
+      .text('De politie controleert vaker in "zwarte" buurten...')
+      .transition()
+      .delay(delay)
+      .duration(animationTime)
+      .style('opacity', 0)
+
+      .transition()
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('...én heeft een bias.')
       .transition()
       .delay(delay)
       .duration(animationTime)
       .style('opacity', 0);
-
-      // scenario 3
-      // .transition()
-      // .delay(delay)
-      // .duration(animationTime)
-      // .style('opacity', 1)
-      // .text('De politie controleert vaker in "zwarte" buurten...')
-      // .transition()
-      // .delay(delay)
-      // .duration(animationTime)
-      // .style('opacity', 0)
-
-      // .transition()
-      // .duration(animationTime)
-      // .style('opacity', 1)
-      // .text('...én heeft een bias.')
-      // .transition()
-      // .delay(delay)
-      // .duration(animationTime)
-      // .style('opacity', 0)
   }
 
 
@@ -156,7 +156,27 @@ export default class Narrator extends React.PureComponent {
       .delay(delay * 0.8)
       .duration(animationTime)
       .style('opacity', 0)
+
+    d3.select(this.references.text3.current)
+      .style('opacity', 0)
+
+      .transition()
+      .delay(delay * 8)
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('Percentage witte criminelen')
+
+    d3.select(this.references.text4.current)
+      .style('opacity', 0)
+
+      .transition()
+      .delay(delay * 8)
+      .duration(animationTime)
+      .style('opacity', 1)
+      .text('Percentage zwarte criminelen')
+
   }
+
 
   render() {
     return (
@@ -170,6 +190,16 @@ export default class Narrator extends React.PureComponent {
           className='narrator'
           x='50%'
           y='50%'
+        />
+        <text ref={this.references.text3} style={styles.text3}
+          className='narrator'
+          x='22%'
+          y='85%'
+        />
+        <text ref={this.references.text4} style={styles.text4}
+          className='narrator'
+          x='81%'
+          y='85%'
         />
       </g>
     );

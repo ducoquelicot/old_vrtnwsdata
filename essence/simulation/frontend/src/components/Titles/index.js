@@ -63,7 +63,7 @@ export default class Titles extends React.PureComponent {
   render() {
     return (
       <g>
-      <text ref={this.references.title1}
+      <text className='title' ref={this.references.title1}
         x= "25%"
         y= "10%"
         width="50%"
@@ -73,7 +73,7 @@ export default class Titles extends React.PureComponent {
           Witte mensen
         </text>
 
-      <text ref={this.references.title2}
+      <text className='title' ref={this.references.title2}
         x= "75%"
         y= "10%"
         width="50%"

@@ -10,6 +10,7 @@ export default class App extends React.PureComponent {
             startSim : false,
             key: Math.random(),
             top: null,
+            left: null,
         }
     }
 
@@ -18,11 +19,11 @@ componentDidMount() {
 }
 
 setSize = () => {
-    if (window.innerWidth < 1300) {
-        this.setState({top: '20%'})
+    if (window.innerWidth > 768) {
+        this.setState({top: '480px', left: '47%'})
     }
-    else {
-        this.setState({top: '16%'})
+    else if (window.innerWidth < 768) {
+        this.setState({top: '250px', left: '42%'})
     }
 }
 
@@ -37,11 +38,20 @@ refresh = () => {
 
 render() {
 
-    const { startSim, key, top } = this.state;
+    const { startSim, key, top, left } = this.state;
     const styles = {
         button : {
+            display: 'inline-block',
+            border: 'none',
+            margin: '0',
+            textDecoration: 'none',
+            background: '#145594',
+            color: '#ffffff',
+            fontFamily: 'Poppins',
+            fontSize: '1rem',
+            textAlign: 'center',
             position: 'absolute',
-            left: '70%',
+            left: left,
             top: top,
         }
     }

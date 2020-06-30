@@ -111,9 +111,9 @@ export default class Bars extends React.PureComponent {
                 <text ref={this.references.text1} x='0' y='-1%' style={styles.text}>
                     {Math.round(this.props.percentageWhite)}%
                 </text>
-                <text ref={this.references.text2} x='0' y='4%' style={styles.text2}>
+                {/* <text className='bar' ref={this.references.text2} x='0' y='4%' style={styles.text2}>
                     Wit
-                </text>
+                </text> */}
             </g>
             <g style={styles.barContainer2}>
                 <rect ref={this.references.stats2} style={styles.bar}
@@ -127,9 +127,9 @@ export default class Bars extends React.PureComponent {
                 <text ref={this.references.text3} x='0' y='-1%' style={styles.text}>
                     {Math.round(this.props.percentageBlack)}%
                 </text>
-                <text ref={this.references.text4} x='0' y='4%' style={styles.text2}>
+                {/* <text className='bar' ref={this.references.text4} x='0' y='4%' style={styles.text2}>
                     Zwart
-                </text>
+                </text> */}
             </g>
         </g>
     );

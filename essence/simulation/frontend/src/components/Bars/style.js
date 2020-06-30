@@ -19,7 +19,7 @@ const styles = {
         fontFamily: 'Poppins',
         fontSize: '1em',
         textAnchor: 'middle',
-        fill: 'black',
+        fill: '#16284A',
         transform: 'translate(1%, 0)'
     }
 

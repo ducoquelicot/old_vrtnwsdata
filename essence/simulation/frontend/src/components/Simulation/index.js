@@ -14,7 +14,7 @@ export default class Simulation extends React.PureComponent {
     this.durationPhase1 = 15000; // ms
     this.durationPhase2 = 10000; // ms
     // this.durationPhase3 = 10000; // ms
-    this.delayBetweenPhases = 5000; //ms
+    this.delayBetweenPhases = 8000; //ms
 
     this.state = {
       citizens: [],
@@ -83,24 +83,24 @@ export default class Simulation extends React.PureComponent {
     return (
       citizens.map((citizen, i, arr) => {
         // scenario 3
-        // const previous = arr[i-1]
+        const previous = arr[i-1]
 
-        // if (citizen.skinTone === 'white') {
-        //   var controlChance = () => Math.random() >= 0.8;
-        //   citizen.control = controlChance();
-        // }
-        // else if (previous === undefined && citizen.skinTone === 'black') {
-        //   controlChance = () => Math.random() >= 0.2;
-        //   citizen.control = controlChance();
-        // }
-        // else if (previous.skinTone === 'black' && citizen.skinTone === 'black') {
-        //   controlChance = () => Math.random() >= 0.1;
-        //   citizen.control = controlChance();
-        // }
-        // else if (previous.skinTone === 'white' && citizen.skinTone === 'black') {
-        //   controlChance = () => Math.random() >= 0.2;
-        //   citizen.control = controlChance();
-        // }
+        if (citizen.skinTone === 'white') {
+          var controlChance = () => Math.random() >= 0.8;
+          citizen.control = controlChance();
+        }
+        else if (previous === undefined && citizen.skinTone === 'black') {
+          controlChance = () => Math.random() >= 0.2;
+          citizen.control = controlChance();
+        }
+        else if (previous.skinTone === 'black' && citizen.skinTone === 'black') {
+          controlChance = () => Math.random() >= 0.1;
+          citizen.control = controlChance();
+        }
+        else if (previous.skinTone === 'white' && citizen.skinTone === 'black') {
+          controlChance = () => Math.random() >= 0.2;
+          citizen.control = controlChance();
+        }
 
         whiteCount = citizen.skinTone === 'white' && citizen.control ? whiteCount + 1 : whiteCount
         blackCount = citizen.skinTone === 'black' && citizen.control ? blackCount + 1 : blackCount

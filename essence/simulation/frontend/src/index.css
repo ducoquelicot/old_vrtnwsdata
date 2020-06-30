@@ -1,0 +1,20 @@
+
+@font-face {
+  font-family: 'Forma DJR Deck';
+  font-weight: 400;
+  src:
+    url('./fonts/FormaDJRDeck-Regular.woff2') format('woff2'),
+    url('./fonts/FormaDJRDeck-Regular.woff') format('woff'),
+    url('./fonts/FormaDJRDeck-Regular.eot') format('embedded-opentype'),
+    url('./fonts/FormaDJRDeck-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Forma DJR Deck';
+  font-weight: 700;
+  src:
+    url('./fonts/FormaDJRDeck-Bold.woff2') format('woff2'),
+    url('./fonts/FormaDJRDeck-Bold.woff') format('woff'),
+    url('./fonts/FormaDJRDeck-Bold.eot') format('embedded-opentype'),
+    url('./fonts/FormaDJRDeck-Bold.ttf') format('truetype');
+}
