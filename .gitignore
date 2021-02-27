@@ -13,3 +13,4 @@ credentials.json
 token.pickle
 .DS_Store
 *.sav
+node_modules
